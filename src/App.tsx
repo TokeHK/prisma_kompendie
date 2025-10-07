@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
-interface Data {
+type Name = {
   id: string;
   name: string;
   lastname: string;
 }
 
 function App() {
-  const [names, setNames] = useState<Data[]>();
-  const [loading, setLoading] = useState(true);
+  const [names, setNames] = useState<Name[]>();
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -35,9 +35,9 @@ function App() {
   
   return (
     <>
-      {names && names.map((n: Data) => (
+      {names && names.map((n: Name) => (
         <div key={n.id}>
-          <p>{n.name} {n.lastname} | id: {n.id}</p>
+          <a href={`http://localhost:4000/names/${n.id}`}>{n.name} {n.lastname}</a>
         </div>
       ))}
     </>
